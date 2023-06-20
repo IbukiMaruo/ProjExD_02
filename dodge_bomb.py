@@ -53,15 +53,15 @@ def main():
     
     # こうかとんが向いている方向を示す辞書
     angle_dct = {
-        ( 0,  0): pg.transform.rotozoom(kk_img, 0, 2.0),
+        ( 0,  0): pg.transform.rotozoom(kk_img, 0, 1.0),
         (-5, -5): pg.transform.rotozoom(kk_img,-45,1.0),
-        (-5,  0): pg.transform.rotozoom(kk_img, 0, 2.0),
-        (-5, +5): pg.transform.rotozoom(kk_img, 45, 2.0),
-        ( 0, +5): pg.transform.rotozoom(kk_img2, -90, 2.0),
-        (+5, +5): pg.transform.rotozoom(kk_img2, -45, 2.0),
-        (+5,  0): pg.transform.rotozoom(kk_img2, 0, 2.0),
-        (+5, -5): pg.transform.rotozoom(kk_img2, 45, 2.0),
-        ( 0, -5): pg.transform.rotozoom(kk_img2, 90, 2.0),
+        (-5,  0): pg.transform.rotozoom(kk_img, 0, 1.0),
+        (-5, +5): pg.transform.rotozoom(kk_img, 45, 1.0),
+        ( 0, +5): pg.transform.rotozoom(kk_img2, -90, 1.0),
+        (+5, +5): pg.transform.rotozoom(kk_img2, -45, 1.0),
+        (+5,  0): pg.transform.rotozoom(kk_img2, 0, 1.0),
+        (+5, -5): pg.transform.rotozoom(kk_img2, 45, 1.0),
+        ( 0, -5): pg.transform.rotozoom(kk_img2, 90, 1.0),
     }
     
     #演習2
