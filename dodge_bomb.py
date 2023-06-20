@@ -30,6 +30,7 @@ def main():
     clock = pg.time.Clock()
     bg_img = pg.image.load("ex02/fig/pg_bg.jpg")
     kk_img = pg.image.load("ex02/fig/3.png")
+    kn_img = pg.image.load("ex02/fig/8.png")
     kk_img2 = pg.transform.flip(kk_img, True, False) #反転させたこうかとん
     kk_img2 = pg.transform.flip(kk_img, True, False) # 反転させたこうかとん
     tmr = 0
@@ -66,6 +67,10 @@ def main():
     #演習2
     accs = [a for a in range(1,11)]
 
+    shock_done = True
+    over_tmr = 0
+
+
     while True:
         txt = "0, 0"
         for event in pg.event.get():
@@ -100,15 +105,20 @@ def main():
             t_y += t[1]
         kk_img = angle_dct[(t_x, t_y)]
 
+        # 練習5:衝突処理
+        if kk_rct.colliderect(bb_rct):
+            shock_done=False
+        if not shock_done:
+            kk_img = kn_img  # 画像を切り替える
+            over_tmr += 1  # 終了後の時間を進める
 
+        if over_tmr > 1000:
+            return  # 1秒経過で終わる
         #　描画処理
         screen.blit(bg_img, [0, 0])
         screen.blit(kk_img, kk_rct)
         screen.blit(bb_img, bb_rct) # 爆弾を描画する
 
-        # 練習5:衝突処理
-        if kk_rct.colliderect(bb_rct):
-            return
         pg.display.update()
         clock.tick(50)
 if __name__ == "__main__":
