@@ -63,6 +63,8 @@ def main():
         ( 0, -5): pg.transform.rotozoom(kk_img2, 90, 2.0),
     }
     
+    #演習2
+    accs = [a for a in range(1,11)]
 
     while True:
         txt = "0, 0"
@@ -72,6 +74,9 @@ def main():
         tmr += 1
         # 爆弾移動処理
         bb_rct.move_ip(vx, vy)
+        avx, avy = vx*accs[min(tmr//1000, 9)], vy*accs[min(tmr//1000, 9)]
+        print(accs[min(tmr//1000, 9)])
+        bb_rct.move_ip(avx, avy)
         if not check_bound(bb_rct, scr_rct)[0]:
             vx *= -1
         if not check_bound(bb_rct, scr_rct)[1]:
