@@ -22,6 +22,8 @@ def check_bound(rect: pg.Rect) -> tuple[bool, bool]:
     if rect.top < 0 or HEIGHT < rect.bottom:  # 縦方向判定
         tate = False
     return yoko, tate
+
+
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -70,10 +72,13 @@ def main():
             vx *= -1
         if not tate:  # 縦方向に範囲外だったら
             vy *= -1
+        
         screen.blit(bb_img, bd_rct)
         pg.display.update()
         tmr += 1
         clock.tick(50)
+
+
 if __name__ == "__main__":
     pg.init()
     main()
