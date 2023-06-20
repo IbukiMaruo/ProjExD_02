@@ -8,6 +8,8 @@ delta = {
     pg.K_LEFT: (-5, 0),
     pg.K_RIGHT: (+5, 0),
 }
+
+
 def check_bound(rect: pg.Rect) -> tuple[bool, bool]:
     """
     こうかとんRect，爆弾Rectが画面外 or 画面内かを判定する関数
