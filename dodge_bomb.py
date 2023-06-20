@@ -5,12 +5,16 @@ import sys
 
 WIDTH,HEIGHT = 1600,900
 # キー入力の辞書を作成する
+
+
 delta = {
         pg.K_UP:    (0, -5),
         pg.K_DOWN:  (0, +5),
         pg.K_LEFT:  (-5, 0),
         pg.K_RIGHT: (+5, 0),
     }
+
+
 # 練習4:こうかとんと爆弾が画面にでないようにする
 def check_bound(obj: pg.Rect, area: pg.Rect) -> tuple[bool, bool]:
     """
@@ -24,6 +28,8 @@ def check_bound(obj: pg.Rect, area: pg.Rect) -> tuple[bool, bool]:
     if obj.top < area.top or area.bottom < obj.bottom: # 縦方向のはみ出し判定
         tate = False
     return yoko, tate
+
+
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -31,13 +37,13 @@ def main():
     bg_img = pg.image.load("ex02/fig/pg_bg.jpg")
     kk_img = pg.image.load("ex02/fig/3.png")
     kn_img = pg.image.load("ex02/fig/8.png")
-    kk_img2 = pg.transform.flip(kk_img, True, False) #反転させたこうかとん
-    kk_img2 = pg.transform.flip(kk_img, True, False) # 反転させたこうかとん
+    kk_img2 = pg.transform.flip(kk_img, True, False)  # 反転させたこうかとん
+    kk_img2 = pg.transform.flip(kk_img, True, False)  # 反転させたこうかとん
     tmr = 0
     # 練習1:半径10,色：赤の円で爆弾を作成する
     bb_img = pg.Surface((20, 20))  # ボムのサーフェイスを作成する
     pg.draw.circle(bb_img, (255, 0, 0), (10, 10), 10)  # ボムを描画する
-    bb_img.set_colorkey((0, 0, 0)) #背景を透明にする
+    bb_img.set_colorkey((0, 0, 0))  #  背景を透明にする
     # 練習1：爆弾をランダムに配置する
     bb_rct = bb_img.get_rect()  # 爆弾のrectをとる
     scr_rct = screen.get_rect()  # 画面のrectをとる
@@ -70,7 +76,6 @@ def main():
     shock_done = True
     over_tmr = 0
 
-
     while True:
         txt = "0, 0"
         for event in pg.event.get():
@@ -89,7 +94,7 @@ def main():
 
         # こうかとん移動処理
         key_lst = pg.key.get_pressed()
-        tup_lst = [] # タプルを保存するリスト
+        tup_lst = []  # タプルを保存するリスト
         for key, tup in delta.items():
             if key_lst[key]:
                 kk_rct.move_ip(tup)
@@ -117,10 +122,12 @@ def main():
         #　描画処理
         screen.blit(bg_img, [0, 0])
         screen.blit(kk_img, kk_rct)
-        screen.blit(bb_img, bb_rct) # 爆弾を描画する
+        screen.blit(bb_img, bb_rct)  # 爆弾を描画する
 
         pg.display.update()
         clock.tick(50)
+
+
 if __name__ == "__main__":
     pg.init()
     main()
