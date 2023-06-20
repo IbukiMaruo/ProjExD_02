@@ -8,8 +8,6 @@ delta = {
     pg.K_LEFT: (-5, 0),
     pg.K_RIGHT: (+5, 0),
 }
-
-
 def check_bound(rect: pg.Rect) -> tuple[bool, bool]:
     """
     こうかとんRect，爆弾Rectが画面外 or 画面内かを判定する関数
@@ -22,8 +20,6 @@ def check_bound(rect: pg.Rect) -> tuple[bool, bool]:
     if rect.top < 0 or HEIGHT < rect.bottom:  # 縦方向判定
         tate = False
     return yoko, tate
-
-
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -49,6 +45,11 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return
+
+        if kk_rct.colliderect(bd_rct):  # 練習５
+            print("ゲームオーバー")
+            return   # ゲームオーバー 
+
         key_lst = pg.key.get_pressed()
         sum_mv = [0, 0]  # 合計移動量
         for k, mv in delta.items():
@@ -58,7 +59,7 @@ def main():
         kk_rct.move_ip(sum_mv)
         if check_bound(kk_rct) != (True, True):
             kk_rct.move_ip(-sum_mv[0], -sum_mv[1])
-
+ 
         screen.blit(bg_img, [0, 0])
         screen.blit(kk_img, kk_rct)
         bd_rct.move_ip(vx, vy)  # 練習２
@@ -70,3 +71,9 @@ def main():
         screen.blit(bb_img, bd_rct)
         pg.display.update()
         tmr += 1
+        clock.tick(50)
+if __name__ == "__main__":
+    pg.init()
+    main()
+    pg.quit()
+    sys.exit()
